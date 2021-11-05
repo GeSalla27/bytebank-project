@@ -23,40 +23,47 @@ class DashboardView extends StatelessWidget {
           builder: (context, state) => Text('Welcome $state'),
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset('images/bytebank_logo.png'),
-          ),
-          SingleChildScrollView(
-            child: Container(
-              height: 120,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  FeatureItem(
-                    _i18n.transfer,
-                    Icons.monetization_on,
-                    onClick: () => _showContactsList(context),
+      body: LayoutBuilder(
+        builder: (context, constraints) => SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minHeight: constraints.maxHeight),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset('images/bytebank_logo.png'),
+                ),
+                SingleChildScrollView(
+                  child: Container(
+                    height: 120,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: <Widget>[
+                        FeatureItem(
+                          _i18n.transfer,
+                          Icons.monetization_on,
+                          onClick: () => _showContactsList(context),
+                        ),
+                        FeatureItem(
+                          _i18n.transaction_feed,
+                          Icons.description,
+                          onClick: () => _showTransactionsList(context),
+                        ),
+                        FeatureItem(
+                          _i18n.change_name,
+                          Icons.person_outline,
+                          onClick: () => _showChangeName(context),
+                        ),
+                      ],
+                    ),
                   ),
-                  FeatureItem(
-                    _i18n.transaction_feed,
-                    Icons.description,
-                    onClick: () => _showTransactionsList(context),
-                  ),
-                  FeatureItem(
-                    _i18n.change_name,
-                    Icons.person_outline,
-                    onClick: () => _showChangeName(context),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

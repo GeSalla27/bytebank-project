@@ -17,5 +17,5 @@ class LocalizationContainer extends BlocContainer {
 }
 
 class CurrentLocaleCubit extends Cubit<String> {
-  CurrentLocaleCubit() : super("en");
+  CurrentLocaleCubit() : super("pt-br");
 }
